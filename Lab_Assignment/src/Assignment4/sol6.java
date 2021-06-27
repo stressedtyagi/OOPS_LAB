@@ -12,88 +12,98 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/*
-Write a java program to implement the following
-In a frame left side add several buttons in one by one, on clicking each button one image should
-appear on right side of the frame, initially no image should be there, have totally 5 buttons, once
-you click on a button, an image will be appear there and after that if you click another button
-another image should appear at same place where previous image is appeared. Which images to
-show is up to you
-*/
+class MyFramePicture extends JFrame implements ActionListener {
 
-public class sol6 implements ActionListener {
-    static JFrame frame;
-    static private JButton bt1, bt2, bt3, bt4, bt5;
-    static private ImageIcon icon1, icon2, icon3, icon4, icon5;
-    static JLabel label = null;
+    private Button b1;
+    private Button b2;
+    private Button b3;
+    private Button b4;
+    private Button b5;
+    private JPanel imagePanel;
+    private JLabel label;
+    private ImageIcon im;
 
-    public static void main(String[] args) {
+    MyFramePicture() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(900, 800);
 
-        sol6 obj = new sol6();
+        b1 = new Button("Image 1");
+        b1.addActionListener(this);
 
-        frame = new JFrame("Random Image Generator");
-        frame.setLayout(new FlowLayout());
-        frame.setSize(900, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        b2 = new Button("Image 2");
+        b2.addActionListener(this);
+        b3 = new Button("Image 3");
+        b3.addActionListener(this);
+        b4 = new Button("Image 4");
+        b4.addActionListener(this);
+        b5 = new Button("Image 5");
+        b5.addActionListener(this);
 
-        bt1 = new JButton("Image 1");
-        bt1.setFont(new Font("Arial", Font.PLAIN, 15));
-        bt1.setSize(100, 20);
-        bt1.addActionListener(obj);
-        frame.add(bt1);
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.add(b1);
+        buttonPanel.add(b2);
+        buttonPanel.add(b3);
+        buttonPanel.add(b4);
+        buttonPanel.add(b5);
+        label = new JLabel();
+        imagePanel = new JPanel();
 
-        bt2 = new JButton("Image 2");
-        bt2.setFont(new Font("Arial", Font.PLAIN, 15));
-        bt2.setSize(100, 20);
-        bt2.addActionListener(obj);
-        frame.add(bt2);
-
-        bt3 = new JButton("Image 3");
-        bt3.setFont(new Font("Arial", Font.PLAIN, 15));
-        bt3.setSize(100, 20);
-        bt3.addActionListener(obj);
-        frame.add(bt3);
-
-        bt4 = new JButton("Image 4");
-        bt4.setFont(new Font("Arial", Font.PLAIN, 15));
-        bt4.setSize(100, 20);
-        bt4.addActionListener(obj);
-        frame.add(bt4);
-
-        bt5 = new JButton("Image 5");
-        bt5.setFont(new Font("Arial", Font.PLAIN, 15));
-        bt5.setSize(100, 20);
-        bt5.addActionListener(obj);
-        frame.add(bt5);
-
-        icon1 = new ImageIcon("img1.jpg");
-        icon2 = new ImageIcon("img2.jpg");
-        icon3 = new ImageIcon("img3.jpg");
-        icon4 = new ImageIcon("img4.jpg");
-        icon5 = new ImageIcon("img5.jpg");
-
-        frame.setVisible(true);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, buttonPanel, imagePanel);
+        splitPane.setOneTouchExpandable(true);
+        splitPane.setDividerLocation(50);
+        add(splitPane, BorderLayout.CENTER);
+        setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
-        if(label != null)
-            frame.remove(label);
-        if (source == bt1) {
-            label = new JLabel(icon1);
-        } else if (source == bt2) {
-            label = new JLabel(icon2);
-        } else if (source == bt3) {
-            label = new JLabel(icon3);
-        } else if (source == bt4) {
-            label = new JLabel(icon4);
-        } else if (source == bt5) {
-            label = new JLabel(icon5);
+        try {
+            if (source == b1) {
+                imagePanel.removeAll();
+                imagePanel.repaint();
+                imagePanel.revalidate();
+                im = new ImageIcon("img1.jpg");
+                label.setIcon(im);
+                imagePanel.add(label);
+            } else if (source == b2) {
+                imagePanel.removeAll();
+                imagePanel.repaint();
+                imagePanel.revalidate();
+                im = new ImageIcon("img2.jpg");
+                label.setIcon(im);
+                imagePanel.add(label);
+            } else if (source == b3) {
+                imagePanel.removeAll();
+                imagePanel.repaint();
+                imagePanel.revalidate();
+                im = new ImageIcon("img3.jpg");
+                label.setIcon(im);
+                imagePanel.add(label);
+            } else if (source == b4) {
+                imagePanel.removeAll();
+                imagePanel.repaint();
+                imagePanel.revalidate();
+                im = new ImageIcon("img4.jpg");
+                label.setIcon(im);
+                imagePanel.add(label);
+            } else if (source == b5) {
+                imagePanel.removeAll();
+                imagePanel.repaint();
+                imagePanel.revalidate();
+                im = new ImageIcon("img5.jpg");
+                label.setIcon(im);
+                imagePanel.add(label);
+            }
+        }catch (Exception exception) {
+            exception.printStackTrace();
         }
-
-        frame.add(label);
-        frame.pack();
-        frame.setSize(900, 600);
     }
+}
+
+public class sol6 {
+
+    public static void main(String[] args) {
+        MyFramePicture c = new MyFramePicture();
+    }
+
 }
