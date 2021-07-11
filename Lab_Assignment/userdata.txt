@@ -1,0 +1,3 @@
+Divyanshu	Tyagi	dummy@dummy	1234567890	Divyanshu	A123425435	Tamil Nadu	
+Divyanshu	Tyagi	dussn@gmail.com	9968505442	Divyanshu	A1233451231	Punjab	
+dummy	dummy	test@gmail.com	9871853695	dummy	Password	Haryana	
